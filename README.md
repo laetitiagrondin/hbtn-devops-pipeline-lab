@@ -1,3 +1,5 @@
+![CI](https://github.com/laetitiagrondin/hbtn-devops-pipeline-lab/actions/workflows/ci.yml/badge.svg)
+
 # hbtn-devops-pipeline-lab
 
 This repository contains the application used in the **CI/CD Pipeline Essentials** lab. It is a small Express API backed by PostgreSQL. The application and tests are already implemented; your work is to diagnose and extend its delivery pipeline.
