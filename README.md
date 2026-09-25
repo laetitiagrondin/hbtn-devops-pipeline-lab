@@ -1,4 +1,4 @@
-![CI](https://github.com/laetitiagrondin/hbtn-devops-pipeline-lab/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/laetitiagrondin/holberton-hbtn-devops-pipeline-lab/actions/workflows/ci.yml/badge.svg)
 
 # hbtn-devops-pipeline-lab
 
