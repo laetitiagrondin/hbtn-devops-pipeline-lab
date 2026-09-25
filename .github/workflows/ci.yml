@@ -131,7 +131,7 @@ jobs:
         run: |
           for attempt in {1..5}; do
             if curl -f "${{ vars.STAGING_URL }}/health" && \
-               curl -f "${{ vars.STAGING_URL }}/items", then
+               curl -f "${{ vars.STAGING_URL }}/items"; then
               exit 0
             fi
             echo "Attempt $attempt failed, retrying..."
