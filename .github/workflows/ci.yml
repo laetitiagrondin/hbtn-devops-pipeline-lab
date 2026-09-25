@@ -116,3 +116,26 @@ jobs:
             ghcr.io/${{ github.repository }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render deploy
+        run: |
+          curl -f -X POST "https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys" \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache":"do_not_clear"}'
+      - name: Verify staging items and health
+        run: |
+          for attempt in {1..5}; do
+            if curl -f "${{ vars.STAGING_URL }}/health" && \
+               curl -f "${{ vars.STAGING_URL }}/items", then
+              exit 0
+            fi
+            echo "Attempt $attempt failed, retrying..."
+            sleep 10
+          done
+
+          exit 1
